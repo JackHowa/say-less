@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div >
-      <p style={{ maxHeight: isOpen ? '100px' : 'none', overflow: 'hidden' }}>I threw a wish in the well
+      <p style={{ maxHeight: isOpen ? 'none' : '100px', overflow: 'hidden' }}>I threw a wish in the well
         Don't ask me, I'll never tell
         I looked to you as it fell
         And now you're in my way
