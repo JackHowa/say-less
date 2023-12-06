@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
+
 function App() {
   const [isOpen, setIsOpen] = useState(false)
+  const containerRef = useRef(null)
 
   return (
-    <div >
+    <div ref={containerRef} >
       <p style={{ maxHeight: isOpen ? 'none' : '100px', overflow: 'hidden' }}>I threw a wish in the well
         Don't ask me, I'll never tell
         I looked to you as it fell
@@ -26,7 +28,11 @@ function App() {
         And all the other boys try to chase me
         But here's my number, so call me, maybe
       </p>
-      <button onClick={() => setIsOpen(prevState => !prevState)}>{isOpen ? 'Say Less' : 'Say More'}</button>
+      <button onClick={() => {
+        setIsOpen(prevState => !prevState)
+        const scrollHeight = containerRef.current.scrollHeight;
+        console.log(scrollHeight, 'scroll height')
+      }}>{isOpen ? 'Say Less' : 'Say More'}</button>
     </div>
   )
 }
