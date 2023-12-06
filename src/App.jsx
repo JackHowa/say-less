@@ -31,6 +31,8 @@ function App() {
       <button onClick={() => {
         setIsOpen(prevState => !prevState)
         const scrollHeight = containerRef.current.scrollHeight;
+        // not supposed to use ref within the render
+        // will do in a future assignment
         console.log(scrollHeight, 'scroll height')
       }}>{isOpen ? 'Say Less' : 'Say More'}</button>
     </div>
