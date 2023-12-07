@@ -1,10 +1,16 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef(null);
+
+  // used for syncing external state with internal
+  useEffect(() => {
+    // set initial content height on first render
+    setContentHeight(contentRef.current.scrollHeight);
+  }, []);
 
   const onClickFunction = () => {
     // toggle previous state rather than reading directly
