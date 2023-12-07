@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div ref={containerRef}>
+      <p>Scroll height: {scrollHeight}</p>
       <p style={{ maxHeight: isOpen ? "none" : "100px", overflow: "hidden" }}>
         I threw a wish in the well I threw a wish in the well Don't ask me, I'll
         never tell I looked to you as it fell And now you're in my way I trade
