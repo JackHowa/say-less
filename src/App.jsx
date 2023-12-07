@@ -3,24 +3,30 @@ import "./App.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollHeight, setScrollHeight] = useState(0);
-  const containerRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef(null);
 
   const onClickFunction = () => {
     // toggle previous state rather than reading directly
     setIsOpen((prevState) => !prevState);
 
-    const { scrollHeight } = containerRef.current;
+    const { scrollHeight } = contentRef.current;
     // setting state for the ref because ref shouldn&apos;t be used in render
     // You shouldn’t read (or write) the current value of use ref during rendering.
     // via https://react.dev/learn/referencing-values-with-refs#differences-between-refs-and-state
-    setScrollHeight(scrollHeight);
+    setContentHeight(scrollHeight);
   };
 
   return (
-    <div ref={containerRef}>
-      <p>Scroll height: {scrollHeight}</p>
-      <p style={{ maxHeight: isOpen ? "none" : "100px", overflow: "hidden" }}>
+    <div>
+      <p
+        ref={contentRef}
+        style={{
+          maxHeight: isOpen ? contentHeight : "100px",
+          overflow: "hidden",
+          transition: "all 0.5s ease",
+        }}
+      >
         I threw a wish in the well I threw a wish in the well Don't ask me, I'll
         never tell I looked to you as it fell And now you're in my way I trade
         my soul for a wish Pennies and dimes for a kiss I wasn't looking for
