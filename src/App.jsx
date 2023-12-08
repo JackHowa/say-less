@@ -1,38 +1,11 @@
-import { useState, useRef, useEffect } from "react";
 import "./App.css";
+import SayLess from "./SayLess";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
-  const contentRef = useRef(null);
-
-  // used for syncing external state with internal
-  useEffect(() => {
-    // set initial content height on first render
-    setContentHeight(contentRef.current.scrollHeight);
-  }, []);
-
-  const onClickFunction = () => {
-    // toggle previous state rather than reading directly
-    setIsOpen((prevState) => !prevState);
-
-    const { scrollHeight } = contentRef.current;
-    // setting state for the ref because ref shouldn&apos;t be used in render
-    // You shouldn’t read (or write) the current value of use ref during rendering.
-    // via https://react.dev/learn/referencing-values-with-refs#differences-between-refs-and-state
-    setContentHeight(scrollHeight);
-  };
-
   return (
     <div>
-      <p
-        ref={contentRef}
-        style={{
-          maxHeight: isOpen ? contentHeight : "100px",
-          overflow: "hidden",
-          transition: "all 0.5s ease",
-        }}
-      >
+      <SayLess>hi</SayLess>
+      <SayLess>
         I threw a wish in the well I threw a wish in the well Don't ask me, I'll
         never tell I looked to you as it fell And now you're in my way I trade
         my soul for a wish Pennies and dimes for a kiss I wasn't looking for
@@ -61,10 +34,7 @@ function App() {
         call me, maybe Before you came into my life, I missed you so bad I
         missed you so bad, I missed you so, so bad Before you came into my life,
         I missed you so bad And you should know that So call me maybe
-      </p>
-      <button onClick={onClickFunction}>
-        {isOpen ? "Say Less" : "Say More"}
-      </button>
+      </SayLess>
     </div>
   );
 }
